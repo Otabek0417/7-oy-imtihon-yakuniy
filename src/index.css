@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  width: 100%;
+  max-width: 1250px;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin: 0 auto;
+}
+
+ul > li > a.active {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--n) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--nc) / var(--tw-text-opacity));
+}

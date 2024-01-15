@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addData } from "../Redux/appSlice";
 
@@ -20,13 +20,11 @@ function Filter() {
     if (currentPage < 3) {
       setCurrentPage(currentPage + 1);
     }
-    
   }
   function fun11() {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
-    
   }
 
   const [re_get, setRe_get] = useState(true);
@@ -55,7 +53,9 @@ function Filter() {
       className="grid relative  sm:grid-cols-2 md:grid-cols-3 rounded-md lg:grid-cols-4 bg-[#F0F6FF] dark:bg-[#181920] p-5 gap-5"
     >
       <div>
-        <label htmlFor="price" className="text-black dark:text-white">Serarch Product</label>
+        <label htmlFor="price" className="text-black dark:text-white">
+          Serarch Product
+        </label>
         <br />
         <input
           type="search"
@@ -71,7 +71,7 @@ function Filter() {
         />
       </div>
       <div>
-        <label className="text-black dark:text-white"  htmlFor="category">
+        <label className="text-black dark:text-white" htmlFor="category">
           Category
         </label>
         <br />
@@ -120,7 +120,9 @@ function Filter() {
       </div>
 
       <div>
-        <label className="text-black dark:text-white" htmlFor="sort">Sort By </label>
+        <label className="text-black dark:text-white" htmlFor="sort">
+          Sort By{" "}
+        </label>
         <br />
         <select
           id="sort"
@@ -140,7 +142,9 @@ function Filter() {
         </select>
       </div>
       <div>
-        <label htmlFor="price" className="text-[#394E6A] dark:text-white">Select Price {filter.price / 100}.00</label>
+        <label htmlFor="price" className="text-[#394E6A] dark:text-white">
+          Select Price {filter.price / 100}.00
+        </label>
         <br />
         <input
           className="w-56"
@@ -159,38 +163,46 @@ function Filter() {
         />
         <div className="flex items-center gap-24">
           <p className="text-[#394E6A] dark:text-white">0</p>
-          <p className="text-center text-[#394E6A] dark:text-white">Max : $1,000.00</p>
+          <p className="text-center text-[#394E6A] dark:text-white">
+            Max : $1,000.00
+          </p>
         </div>
       </div>
       <button className="bg-slate-700 dark:bg-[#FF57B6] h-6 rounded-xl text-slate-100 dark:text-black">
         SEARCH
       </button>
 
-        <div className="flex">
-          <div className="flex items-center gap-4   rounded-xl bg-[#E2E8F4] dark:bg-[#0101] absolute bottom-[-1600px] right-10">
-            <button onClick={fun11} className="hover:bg-[#C7CBD4] dark:hover:bg-[#09090C] rounded-l-xl p-2 text-lg font-bold  text-black dark:text-white">
-              PREV
-            </button>
-            <div>
-              {btn.map((val) => (
-                <button
-                  onClick={() => setCurrentPage(val)}
-                  style={{
-                    background:
-                      currentPage === val ? "rgba(128, 128, 128, 0.279) " : "",
-                  }}
-                  key={val}
-                  className="mr-3 py-2 px-4 text-lg text-[#394E80]"
-                >
-                  {val}
-                </button>
-              ))}
-            </div>
-            <button onClick={funn} className="hover:bg-[#C7CBD4]  dark:hover:bg-[#09090C] rounded-r-xl p-2 text-lg font-bold text-[#394E80]  dark:text-white">
-              NEXT
-            </button>
+      <div className="flex">
+        <div className="flex items-center gap-4   rounded-xl bg-[#E2E8F4] dark:bg-[#0101] absolute bottom-[-1600px] right-10">
+          <button
+            onClick={fun11}
+            className="hover:bg-[#C7CBD4] dark:hover:bg-[#09090C] rounded-l-xl p-2 text-lg font-bold  text-black dark:text-white"
+          >
+            PREV
+          </button>
+          <div>
+            {btn.map((val) => (
+              <button
+                onClick={() => setCurrentPage(val)}
+                style={{
+                  background:
+                    currentPage === val ? "rgba(128, 128, 128, 0.279) " : "",
+                }}
+                key={val}
+                className="mr-3 py-2 px-4 text-lg text-[#394E80]"
+              >
+                {val}
+              </button>
+            ))}
           </div>
+          <button
+            onClick={funn}
+            className="hover:bg-[#C7CBD4]  dark:hover:bg-[#09090C] rounded-r-xl p-2 text-lg font-bold text-[#394E80]  dark:text-white"
+          >
+            NEXT
+          </button>
         </div>
+      </div>
     </form>
   );
 }

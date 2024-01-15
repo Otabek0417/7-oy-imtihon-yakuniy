@@ -1,11 +1,19 @@
 import { useFetch } from "../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom";
+import { formatPrice } from "../utils";
 function Home() {
   const { data, isPending, error } = useFetch(
     "https://strapi-store-server.onrender.com/api/products?featured=true"
   );
   console.log(data);
   const navigate = useNavigate();
+  if (isPending) {
+    return (
+      <div className="loader z-30">
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+  }
   return (
     <div className="container py-20">
       <div className="grid lg:grid-cols-2 gap-24 items-center">
@@ -84,7 +92,7 @@ function Home() {
                       {data.attributes.title}
                     </h2>
                     <span className="text-secondary">
-                      ${data.attributes.price.toLocaleString("en-US")}
+                      {formatPrice(data.attributes.price)}
                     </span>
                   </div>
                 </div>

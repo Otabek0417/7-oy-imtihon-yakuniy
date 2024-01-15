@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useNavigate } from "react-router-dom";
+import { formatPrice } from "../utils";
 import Filter from "../components/Filter";
 
 function Products() {
@@ -32,15 +33,15 @@ function Products() {
                     data.attributes.title.slice(1)}
                 </p>
                 <span className="text-lg text-[#463AA1] dark:text-[#BF95F9]">
-                  ${data.attributes.price}
+                  ${formatPrice(data.attributes.price)}
                 </span>
               </div>
             );
           })}
           {!info?.data.length && (
-            <p className="text-2xl">
-              Sorry, no products matched your search...
-            </p>
+            <div className="loader z-30">
+              <span className="loading loading-dots loading-lg"></span>
+            </div>
           )}
         </div>
       </div>

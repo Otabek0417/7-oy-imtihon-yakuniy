@@ -1,7 +1,25 @@
 import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 function Navbar() {
   const state = useSelector((state) => state.products.savat);
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
+
+  const handleChange = (e) => {
+    console.log(e);
+    if (e.target.checked) {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  };
   return (
     <div className="bg-base-200 sticky pt-1 top-0 z-10">
       <nav className="container">
@@ -80,7 +98,12 @@ function Navbar() {
           <div className="navbar-end">
             <label className="swap swap-rotate">
               {/* this hidden checkbox controls the state */}
-              <input className="outline-none" type="checkbox" />
+              <input
+                className="outline-none"
+                type="checkbox"
+                onChange={handleChange}
+                checked={theme === "dark" ? false : true}
+              />
               {/* sun icon */}
 
               <svg

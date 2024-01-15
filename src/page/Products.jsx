@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useNavigate } from "react-router-dom";
-import Filter from "../Components/Filter";
+import Filter from "../components/Filter";
 
 function Products() {
   const info = useSelector((state) => state.products);

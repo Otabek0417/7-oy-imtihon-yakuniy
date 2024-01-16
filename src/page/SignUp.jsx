@@ -1,11 +1,9 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { useSignUp } from "../hooks/useSignUp";
-import { useGlobalContext } from "../hooks/useGlobalContext";
+import { useSignUp } from "../hooks/useSignup";
 import { useLogin } from "../hooks/useLogin";
 import { FcGoogle } from "react-icons/fc";
 function Signup() {
-  const { spinner } = useGlobalContext();
   const { isPending, error, signup } = useSignUp();
   const { enterWithGoogle } = useLogin();
   const form = useRef();

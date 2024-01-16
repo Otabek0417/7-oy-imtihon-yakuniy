@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useGlobalContext } from "../hooks/useGlobalContext";
 import { useLogin } from "../hooks/useLogin";
 import { FcGoogle } from "react-icons/fc";
-
 function Login() {
   const { spinner } = useGlobalContext();
   const { isPending, error, login, enterWithGoogle } = useLogin();

@@ -10,30 +10,34 @@ function Products() {
     <div className="align-element py-20">
       <div className="w-[80%] cursor-pointer container mx-auto py-5">
         <Filter></Filter>
-        <p className="text-[#394E6A] dark:text-white">
-          {info.data.length} product
-        </p>
-        <div className="grid mx-auto md:grid-cols-2 lg:grid-cols-3 gap-5 p-">
+        <div className="flex justify-between items-center mt-8 border-b border-base-300 pb-5">
+          <h4 className="font-medium text-md">{info.data.length} products</h4>
+        </div>
+        <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {info?.data.map((data) => {
             console.log(data);
             return (
               <div
                 key={data.id}
                 onClick={() => navigate("/single", { state: { data: data } })}
-                className="text-center mx-auto w-full shadow-[#cfc5c5f8] shadow-lg dark:shadow-[#22242F] p-5 rounded-lg "
+                className="card w-full shadow-xl hover:shadow-2xl transition duration-300"
               >
-                <img
-                  src={data.attributes.image}
-                  className="rounded-lg h-[200px] md:h-[300px] w-full"
-                  alt=""
-                />
-                <p className="text-2xl font-bold text-[#394E6A] dark:text-white">
-                  {data.attributes.title[0].toUpperCase() +
-                    data.attributes.title.slice(1)}
-                </p>
-                <span className="text-lg text-[#463AA1] dark:text-[#BF95F9]">
-                  ${formatPrice(data.attributes.price)}
-                </span>
+                <figure className="px-4 pt-4">
+                  <img
+                    src={data.attributes.image}
+                    className="rounded-xl h-64 md:h-48 w-full object-cover"
+                    alt={data.attributes.title[0]}
+                  />
+                </figure>
+                <div className="card-body items-center text-center">
+                  <p className="card-title capitalize tracking-wider">
+                    {data.attributes.title[0].toUpperCase() +
+                      data.attributes.title.slice(1)}
+                  </p>
+                  <span className="text-secondary">
+                    {formatPrice(data.attributes.price)}
+                  </span>
+                </div>
               </div>
             );
           })}

@@ -19,7 +19,7 @@ function Header() {
                 toast.success("Logget out successfully");
                 dispatch(logOut());
               }}
-              className="btn btn-xs btn-outline text-xs sm:text-sm btn-secondary"
+              className="btn btn-xs btn-outline text-xs sm:text-sm btn-accent"
             >
               Logout
             </button>

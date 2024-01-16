@@ -52,11 +52,10 @@ function Filter() {
       onSubmit={submit}
       className="bg-base-200 rounded-md px-8 py-4 grid gap-x-4  gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center"
     >
-      <div>
-        <label htmlFor="price" className="text-black dark:text-white">
+      <div className="form-control">
+        <label htmlFor="price" className="label label-text capitalize">
           Serarch Product
         </label>
-        <br />
         <input
           type="search"
           name="product"
@@ -67,17 +66,16 @@ function Filter() {
               [e.target.name]: e.target.value,
             })
           }
-          className="w-full bg-white dark:bg-[#272935]  text-black dark:text-white rounded-xl p-1 px-2 my-3"
+          className="input input-bordered input-sm"
         />
       </div>
-      <div>
-        <label className="text-black dark:text-white" htmlFor="category">
+      <div className="form-control">
+        <label className="label label-text capitalize" htmlFor="category">
           Category
         </label>
-        <br />
         <select
           id="category"
-          className="w-full bg-white dark:bg-[#272935] rounded-xl p-1 px-2 my-3"
+          className="select select-bordered select-sm"
           name="category"
           onChange={(e) =>
             setFilter({
@@ -94,14 +92,13 @@ function Filter() {
           <option value="sofas">Sofas</option>
         </select>
       </div>
-      <div>
-        <label className="text-black dark:text-white" htmlFor="company">
+      <div className="form-control">
+        <label className="label label-text capitalize" htmlFor="company">
           Company
         </label>
-        <br />
         <select
           id="company"
-          className="w-full  bg-white dark:bg-[#272935] rounded-xl p-1 px-2 my-3"
+          className="select select-bordered select-sm"
           name="company"
           onChange={(e) =>
             setFilter({
@@ -118,15 +115,13 @@ function Filter() {
           <option value="sofas">Sofas</option>
         </select>
       </div>
-
-      <div>
-        <label className="text-black dark:text-white" htmlFor="sort">
-          Sort By{" "}
+      <div className="form-control">
+        <label className="label label-text capitalize" htmlFor="sort">
+          Sort By
         </label>
-        <br />
         <select
           id="sort"
-          className="w-full  bg-white dark:bg-[#272935] rounded-xl p-1 px-2 my-3"
+          className="select select-bordered select-sm"
           name="sort"
           onChange={(e) =>
             setFilter({
@@ -141,13 +136,15 @@ function Filter() {
           <option value="low">low</option>
         </select>
       </div>
-      <div>
-        <label htmlFor="price" className="text-[#394E6A] dark:text-white">
-          Select Price {filter.price / 100}.00
+      <div className="form-control">
+        <label
+          htmlFor="price"
+          className="label label-text capitalize cursor-pointer"
+        >
+          Select Price ${filter.price / 100}.00
         </label>
-        <br />
         <input
-          className="w-56"
+          className="range range-primary range-sm"
           type="range"
           value={filter.price / 1000}
           onChange={(e) =>
@@ -161,48 +158,12 @@ function Filter() {
           min="0"
           max="100"
         />
-        <div className="flex items-center gap-24">
-          <p className="text-[#394E6A] dark:text-white">0</p>
-          <p className="text-center text-[#394E6A] dark:text-white">
-            Max : $1,000.00
-          </p>
+        <div className="w-full flex justify-between text-xs px-2 mt-2">
+          <p className="font-bold text-md">0</p>
+          <p className="font-bold text-md">Max : $1,000.00</p>
         </div>
       </div>
-      <button className="bg-slate-700 dark:bg-[#FF57B6] h-6 rounded-xl text-slate-100 dark:text-black">
-        SEARCH
-      </button>
-
-      <div className="flex">
-        <div className="flex items-center gap-4   rounded-xl bg-[#E2E8F4] dark:bg-[#0101] absolute bottom-[-1600px] right-10">
-          <button
-            onClick={fun11}
-            className="hover:bg-[#C7CBD4] dark:hover:bg-[#09090C] rounded-l-xl p-2 text-lg font-bold  text-black dark:text-white"
-          >
-            PREV
-          </button>
-          <div>
-            {btn.map((val) => (
-              <button
-                onClick={() => setCurrentPage(val)}
-                style={{
-                  background:
-                    currentPage === val ? "rgba(128, 128, 128, 0.279) " : "",
-                }}
-                key={val}
-                className="mr-3 py-2 px-4 text-lg text-[#394E80]"
-              >
-                {val}
-              </button>
-            ))}
-          </div>
-          <button
-            onClick={funn}
-            className="hover:bg-[#C7CBD4]  dark:hover:bg-[#09090C] rounded-r-xl p-2 text-lg font-bold text-[#394E80]  dark:text-white"
-          >
-            NEXT
-          </button>
-        </div>
-      </div>
+      <button className="btn btn-primary btn-sm uppercase">search</button>
     </form>
   );
 }

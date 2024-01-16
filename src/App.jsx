@@ -3,6 +3,7 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
+
 // !Pages
 import Home from "./page/Home";
 import About from "./page/About";
@@ -20,14 +21,19 @@ import { ProtoctedRoutes } from "./components/ProtoctedRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/firebaseConfig";
+import { login } from "./Redux/appSlice";
+import { isAuthReadyFunc } from "./Redux/appSlice";
 
 function App() {
-  const { user } = useSelector((store) => store.products);
+  const { user, isAuthReady } = useSelector((store) => store.products);
+  console.log(user);
+  const dispatch = useDispatch();
   const router = createBrowserRouter([
     {
       path: "/",
       element: (
-        <ProtoctedRoutes user={true}>
+        <ProtoctedRoutes user={user}>
           <RootLayout />
         </ProtoctedRoutes>
       ),
@@ -64,7 +70,14 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      dispatch(login(user));
+      dispatch(isAuthReadyFunc());
+    });
+  }, []);
+
+  return isAuthReady && <RouterProvider router={router} />;
 }
 
 export default App;

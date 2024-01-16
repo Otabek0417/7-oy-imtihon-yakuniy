@@ -3,7 +3,7 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-
+import { useEffect } from "react";
 // !Pages
 import Home from "./page/Home";
 import About from "./page/About";
@@ -17,11 +17,13 @@ import SignUp from "./page/SignUp";
 //*Components
 import { ProtoctedRoutes } from "./components/ProtoctedRoutes";
 
-//?Redux
-import { useSelector } from "react-redux";
+import { useGlobalContext } from "./hooks/useGlobalContext";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/firebaseConfig";
 
 function App() {
-  const { user } = useSelector((store) => store.products);
+  const { user, isAuthReady, dispatch } = useGlobalContext();
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -63,7 +65,14 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      dispatch({ type: "LOGIN", payload: user });
+      dispatch({ type: "IS_AUTH_READY" });
+    });
+  }, []);
+
+  return isAuthReady && <RouterProvider router={router} />;
 }
 
 export default App;

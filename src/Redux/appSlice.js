@@ -7,20 +7,8 @@ export const appReucer = createSlice({
     data: [],
     savat: LocalCart(),
     page: "",
-    user: null,
-    loading: false,
-    isAuthReady: false,
   },
   reducers: {
-    login: (state, action) => {
-      state.user = action.payload;
-    },
-    logOut: (state) => {
-      state.user = null;
-    },
-    isAuthReadyFunc: (state) => {
-      state.isAuthReady = true;
-    },
     addData: (state, action) => {
       state.data = action.payload;
     },

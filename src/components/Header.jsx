@@ -1,9 +1,25 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useGlobalContext } from "../hooks/useGlobalContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";
 import { toast } from "react-toastify";
-import { logOut } from "../Redux/appSlice";
+import { Link } from "react-router-dom";
 function Header() {
-  const { user } = useSelector((state) => state.products);
-  const dispatch = useDispatch();
+  const { user, spinner } = useGlobalContext();
+  console.log(user);
+
+  const [isPending, setIspending] = useState(false);
+
+  const handleLogout = () => {
+    setIspending(true);
+    signOut(auth)
+      .then(() => {
+        setIspending(false);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
   return (
     <div className="w-full bg-neutral sticky pt-1 top-0 z-10">
       <header className="py-2 text-neutral-content container">
@@ -16,7 +32,7 @@ function Header() {
             <button
               onClick={() => {
                 toast.success("Logget out successfully");
-                dispatch(logOut());
+                handleLogout();
               }}
               className="btn btn-xs btn-outline text-xs sm:text-sm btn-accent"
             >

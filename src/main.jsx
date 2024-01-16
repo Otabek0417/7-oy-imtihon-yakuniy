@@ -5,11 +5,12 @@ import App from "./App.jsx";
 import "./index.css";
 import { store } from "./store.js";
 import { ToastContainer } from "react-toastify";
+import { GlobalContexProvider } from "./context/GlobalContext.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
+    <GlobalContexProvider>
       <App />
-      <ToastContainer /> 
-    </Provider>
-  </React.StrictMode>
+      <ToastContainer />
+    </GlobalContexProvider>
+  </Provider>
 );

@@ -1,17 +1,17 @@
-import { Link } from "react-router-dom";
 import { useRef } from "react";
-import { useSignUp } from "../hooks/useSignup";
+import { Link } from "react-router-dom";
+import { useSignUp } from "../hooks/useSignUp";
+import { useGlobalContext } from "../hooks/useGlobalContext";
 import { useLogin } from "../hooks/useLogin";
 import { FcGoogle } from "react-icons/fc";
 function Signup() {
+  const { spinner } = useGlobalContext();
   const { isPending, error, signup } = useSignUp();
   const { enterWithGoogle } = useLogin();
   const form = useRef();
   const name = useRef();
   const email = useRef();
   const password = useRef();
-
-  //
   const handleSubmit = (e) => {
     signup(name.current.value, email.current.value, password.current.value);
     e.preventDefault();
@@ -21,6 +21,7 @@ function Signup() {
     e.preventDefault();
     enterWithGoogle();
   };
+
   return (
     <div className="grid h-screen place-items-center">
       <div className="grid h-screen w-full place-items-center ">

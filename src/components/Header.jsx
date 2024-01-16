@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { useState } from "react";
 import { logOut } from "../Redux/appSlice";
 function Header() {
   const { user } = useSelector((state) => state.products);

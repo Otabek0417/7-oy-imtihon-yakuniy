@@ -18,10 +18,17 @@ import SignUp from "./page/SignUp";
 import { ProtoctedRoutes } from "./components/ProtoctedRoutes";
 
 //?Redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/firebaseConfig";
+import { login } from "./Redux/appSlice";
+import { isAuthReadyFunc } from "./Redux/appSlice";
 
 function App() {
-  const { user } = useSelector((store) => store.products);
+  const { user, isAuthReady } = useSelector((store) => store.products);
+  console.log(user);
+  const dispatch = useDispatch();
   const router = createBrowserRouter([
     {
       path: "/",
@@ -63,7 +70,14 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      dispatch(login(user));
+      dispatch(isAuthReadyFunc());
+    });
+  }, []);
+
+  return isAuthReady && <RouterProvider router={router} />;
 }
 
 export default App;

@@ -1,6 +1,4 @@
-
-
-import { ADD_TO_CART } from '../action/cartActions';
+import { ADD_TO_CART } from "../action/cartActions";
 
 const initialState = {
   items: [],
@@ -13,8 +11,6 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         items: [...state.items, action.payload],
       };
-      
-
     default:
       return state;
   }

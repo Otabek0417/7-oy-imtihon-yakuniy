@@ -5,10 +5,9 @@ import Filter from "../components/Filter";
 
 function Products() {
   const info = useSelector((state) => state.products);
-  console.log(info);
   const navigate = useNavigate();
   return (
-    <>
+    <div className="align-element py-20">
       <div className="w-[80%] cursor-pointer container mx-auto py-5">
         <Filter></Filter>
         <p className="text-[#394E6A] dark:text-white">
@@ -45,7 +44,7 @@ function Products() {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

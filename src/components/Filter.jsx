@@ -50,7 +50,7 @@ function Filter() {
   return (
     <form
       onSubmit={submit}
-      className="grid relative  sm:grid-cols-2 md:grid-cols-3 rounded-md lg:grid-cols-4 bg-[#F0F6FF] dark:bg-[#181920] p-5 gap-5"
+      className="bg-base-200 rounded-md px-8 py-4 grid gap-x-4  gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center"
     >
       <div>
         <label htmlFor="price" className="text-black dark:text-white">

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 function Navbar() {
   const state = useSelector((state) => state.products.savat);
+
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -15,23 +16,24 @@ function Navbar() {
   const handleChange = (e) => {
     console.log(e);
     if (e.target.checked) {
-      setTheme("light");
+      setTheme("winter");
     } else {
       setTheme("dark");
     }
   };
+
   return (
     <div className="bg-base-200 sticky pt-1 top-0 z-10">
       <nav className="container">
         <div className="navbar align-element">
           <div className="navbar-start">
-            <a
+            <Link
               className="hidden lg:flex btn btn-primary text-3xl items-center active"
-              href="/"
+              to={"/"}
               aria-current="page"
             >
               C
-            </a>
+            </Link>
             <div className="dropdown">
               <label tabIndex="0" className="btn btn-ghost lg:hidden">
                 <svg

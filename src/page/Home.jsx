@@ -5,7 +5,6 @@ function Home() {
   const { data, isPending, error } = useFetch(
     "https://strapi-store-server.onrender.com/api/products?featured=true"
   );
-  console.log(data);
   const navigate = useNavigate();
   if (isPending) {
     return (
@@ -73,7 +72,7 @@ function Home() {
         <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {data &&
             data.map((data) => {
-              console.log(data);
+              // console.log(data);
               return (
                 <div
                   key={data.id}

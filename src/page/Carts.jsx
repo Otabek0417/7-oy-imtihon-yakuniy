@@ -3,7 +3,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSelector, useDispatch } from "react-redux";
 import { decProduct, incProduct, removeProduct } from "../Redux/appSlice";
 import { formatPrice, customFetch, generateAmountOptions } from "../utils";
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -105,9 +104,6 @@ function Cart() {
                   </p>
                 </div>
               </div>
-              <a className="btn btn-primary btn-block mt-8" href="/checkout">
-                proceed to checkout
-              </a>
             </div>
           </div>
         )}
